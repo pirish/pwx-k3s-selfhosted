@@ -1,0 +1,24 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "copyparty.fullname" . }}-env
+  labels:
+    {{- include "copyparty.labels" . | nindent 4 }}
+data:
+  LD_PRELOAD: "/usr/lib/libmimalloc-secure.so.NOPE"
+  PYTHONUNBUFFERED: "1"
+{{ if .Values.configMapConfig.enabled -}}
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "copyparty.fullname" . }}-config
+  labels:
+    {{- include "copyparty.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/resource-policy": keep
+data:
+  copyparty.conf: |
+    {{ .Values.configMapConfig.data | nindent 4 }}
+{{- end }}

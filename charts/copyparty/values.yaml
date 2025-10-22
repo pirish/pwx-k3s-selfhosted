@@ -1,0 +1,188 @@
+# Default values for copyparty.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# This will set the replicaset count more information can be found here: https://kubernetes.io/docs/concepts/workloads/controllers/replicaset/
+replicaCount: 1
+
+# This sets the container image more information can be found here: https://kubernetes.io/docs/concepts/containers/images/
+image:
+  repository: copyparty
+  build: ac
+  
+    # min (57 MiB, 20 gz) is just copyparty itself
+    # im (70 MiB, 25 gz) can thumbnail images with pillow, parse media files with mutagen
+    # ac (163 MiB, 56 gz) is im plus ffmpeg for video/audio thumbs + audio transcoding + better tags
+    # iv (211 MiB, 73 gz) is ac plus vips for faster heif / avic / jxl thumbnails
+    # dj (309 MiB, 104 gz) is iv plus beatroot/keyfinder to detect musical keys and bpm
+
+  # This sets the pull policy for images.
+  pullPolicy: IfNotPresent
+  # Overrides the image tag whose default is the chart appVersion.
+  tag: ""
+
+# This is for the secrets for pulling an image from a private repository more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/pull-image-private-registry/
+imagePullSecrets: []
+# This is to override the chart name.
+nameOverride: ""
+fullnameOverride: ""
+
+# This section builds out the service account more information can be found here: https://kubernetes.io/docs/concepts/security/service-accounts/
+serviceAccount:
+  # Specifies whether a service account should be created
+  create: false
+  # Automatically mount a ServiceAccount's API credentials?
+  automount: false
+  # Annotations to add to the service account
+  annotations: {}
+  # The name of the service account to use.
+  # If not set and create is true, a name is generated using the fullname template
+  name: ""
+
+# This is for setting Kubernetes Annotations to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/annotations/
+podAnnotations: {}
+# This is for setting Kubernetes Labels to a Pod.
+# For more information checkout: https://kubernetes.io/docs/concepts/overview/working-with-objects/labels/
+podLabels: {}
+
+podSecurityContext: {}
+  # fsGroup: 2000
+
+securityContext: {}
+  # capabilities:
+  #   drop:
+  #   - ALL
+  # readOnlyRootFilesystem: true
+  # runAsNonRoot: true
+  # runAsUser: 1000
+
+# This is for setting up a service more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/
+service:
+  # This sets the service type more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#publishing-services-service-types
+  type: ClusterIP
+  # This sets the ports more information can be found here: https://kubernetes.io/docs/concepts/services-networking/service/#field-spec-ports
+  port: 3923
+
+# This block is for setting up the ingress for more information can be found here: https://kubernetes.io/docs/concepts/services-networking/ingress/
+ingress:
+  enabled: false
+  className: ""
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+ingressRoute:
+  enabled: false
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+  tls: []
+    # enabled: true
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+resources: {}
+  # We usually recommend not to specify default resources and to leave this as a conscious
+  # choice for the user. This also increases chances charts run on environments with little
+  # resources, such as Minikube. If you do want to specify resources, uncomment the following
+  # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+  # limits:
+  #   cpu: 100m
+  #   memory: 128Mi
+  # requests:
+  #   cpu: 100m
+  #   memory: 128Mi
+
+# This is to setup the liveness and readiness probes more information can be found here: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-startup-probes/
+livenessProbe:
+  httpGet:
+    path: /
+    port: http
+readinessProbe:
+  httpGet:
+    path: /
+    port: http
+
+# This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
+autoscaling:
+  enabled: false
+  minReplicas: 1
+  maxReplicas: 100
+  targetCPUUtilizationPercentage: 80
+  # targetMemoryUtilizationPercentage: 80
+
+configMapConfig:
+  enabled: false
+  # Additional configuration entries to add to the ConfigMap.
+  data: |
+    # not actually YAML but lets pretend:
+    # -*- mode: yaml -*-
+    # vim: ft=yaml:
+    # configmap
+    [global]
+      e2dsa  # enable file indexing and filesystem scanning
+      e2ts   # enable multimedia indexing
+      ansi   # enable colors in log messages
+      # q, lo: /cfg/log/%Y-%m%d.log   # log to file instead of docker
+      # p: 3939          # listen on another port
+      # ipa: 10.89.      # only allow connections from 10.89.*
+      # df: 16           # stop accepting uploads if less than 16 GB free disk space
+      # ver              # show copyparty version in the controlpanel
+      # grid             # show thumbnails/grid-view by default
+      # theme: 2         # monokai
+      # name: datasaver  # change the server-name that's displayed in the browser
+      # stats, nos-dup   # enable the prometheus endpoint, but disable the dupes counter (too slow)
+      # no-robots, force-js  # make it harder for search engines to read your server
+
+    [accounts]
+      ed: SecurePass!  # username: password
+
+    [/]            # create a volume at "/" (the webroot), which will
+      /w           # share /w (the docker data volume)
+      accs:
+        rw: *      # everyone gets read-write access, but
+        rwmda: ed  # the user "ed" gets read-write-move-delete-admin
+        
+    # End
+
+    
+# Additional volumes on the output Deployment definition.
+volumes: []
+  # - name: config
+  #   persistentVolumeClaim:
+  #     claimName: copyparty-config-pvc
+      
+# - name: data
+    # hostPath:
+    #   path: /data/location # The actual path on the K3s node
+    #   type: DirectoryOrCreate
+
+# Additional volumeMounts on the output Deployment definition.
+volumeMounts: []
+    # - name: config
+    #   mountPath: /cfg
+
+  # - name: data
+  #   mountPath: /w
+  #   readOnly: false
+
+nodeSelector: {}
+
+tolerations: []
+
+affinity: {}
