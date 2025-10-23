@@ -8,7 +8,7 @@ metadata:
 data:
   TZ: {{ .Values.mousehole.timezone }}
   MOUSEHOLE_PORT: {{ .Values.service.port }}
-  MOUSEHOLE_STATE_DIR_PATH: {{ .Values.mousehole.stateDirPath }}
+  MOUSEHOLE_STATE_DIR_PATH: {{ .Values.mousehole.stateDirPath | quote }}
   #MOUSEHOLE_USER_AGENT: 
-  MOUSEHOLE_CHECK_INTERVAL_SECONDS: {{ .Values.mousehole.checkInterval }}
-  MOUSEHOLE_STALE_RESPONSE_SECONDS: {{ .Values.mousehole.staleResponse }}
+  MOUSEHOLE_CHECK_INTERVAL_SECONDS: {{ .Values.mousehole.checkInterval  }}
+  MOUSEHOLE_STALE_RESPONSE_SECONDS: {{ .Values.mousehole.staleResponse  }}
