@@ -22,4 +22,15 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.1/copyparty-0.1.1.tgz
     version: 0.1.1
-generated: "2025-10-23T14:21:55.196531199Z"
+  mousehole:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2025-10-23T19:40:03.521964371Z"
+    description: A Helm chart for Mousehole
+    digest: df7487feba1c2e51af6f903edb6eea7c560a144c66b1d70af6fa6507832e2017
+    name: mousehole
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-10-23T19:40:03.52197432Z"
