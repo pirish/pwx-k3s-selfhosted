@@ -1,0 +1,14 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "mousehole.fullname" . }}-env
+  labels:
+    {{- include "mousehole.labels" . | nindent 4 }}
+data:
+  TZ: {{ .Values.mousehole.timezone }}
+  MOUSEHOLE_PORT: {{ .Values.service.port }}
+  MOUSEHOLE_STATE_DIR_PATH: {{ .Values.mousehole.stateDirPath }}
+  #MOUSEHOLE_USER_AGENT: 
+  MOUSEHOLE_CHECK_INTERVAL_SECONDS: {{ .Values.mousehole.checkInterval }}
+  MOUSEHOLE_STALE_RESPONSE_SECONDS: {{ .Values.mousehole.staleResponse }}
