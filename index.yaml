@@ -25,6 +25,16 @@ entries:
   mousehole:
   - apiVersion: v2
     appVersion: 0.2.0
+    created: "2025-10-23T19:55:28.456128637Z"
+    description: A Helm chart for Mousehole
+    digest: 8e04ae6583516ea50ca1ce492ad77c6f4f95a2d5c1164cc590d2bba1aff2ca75
+    name: mousehole
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.2/mousehole-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.2.0
     created: "2025-10-23T19:44:42.935155373Z"
     description: A Helm chart for Mousehole
     digest: 8038893df67fe12d1252bd0ce700400e6032a52f69ad9b002980c503f118799b
@@ -43,4 +53,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
     version: 0.1.0
-generated: "2025-10-23T19:44:42.93516468Z"
+generated: "2025-10-23T19:55:28.456145919Z"
