@@ -50,13 +50,3 @@ app.kubernetes.io/name: {{ include "smtp-aws-ses.name" . }}
 app.kubernetes.io/instance: {{ .Release.Name }}
 {{- end }}
 
-{{/*
-Create the name of the service account to use
-*/}}
-{{- define "smtp-aws-ses.serviceAccountName" -}}
-{{- if .Values.serviceAccount.create }}
-{{- default (include "smtp-aws-ses.fullname" .) .Values.serviceAccount.name }}
-{{- else }}
-{{- default "default" .Values.serviceAccount.name }}
-{{- end }}
-{{- end }}
