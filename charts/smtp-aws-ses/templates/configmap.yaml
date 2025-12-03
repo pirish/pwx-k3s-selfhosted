@@ -7,6 +7,6 @@ data:
   RELAY_PORT: "{{ .Values.aws.ses.port }}"
   FROM_EMAIL: "{{ .Values.aws.ses.fromEmail }}"
   TO_EMAIL: "{{ .Values.aws.ses.toEmail }}"
-  RECIPIENT_RESTRICTIONS: "{{ .Values.recipientRestrictions | default "permit_mynetworks" }}"
+  RECIPIENT_RESTRICTIONS: "{{ .Values.recipientRestrictions | default "permit_mynetworks permit_sasl_authenticated reject_unauth_destination" }}"
   USE_TLS: "{{ .Values.aws.ses.useTls | default "yes" }}"
   TLS_VERIFY: "{{ .Values.aws.ses.tlsVerify | default "yes" }}"
