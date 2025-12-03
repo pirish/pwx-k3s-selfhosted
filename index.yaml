@@ -83,4 +83,15 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
     version: 0.1.0
-generated: "2025-11-20T19:49:27.547904952Z"
+  smtp-aws-ses:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2025-12-03T15:13:44.058703714Z"
+    description: A Helm chart for deploying an SMTP server using AWS SES
+    digest: a91150a8453870e2e8f71b44fff04dceba79301686b291fedc12e1bb2c43d100
+    name: smtp-aws-ses
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
+    version: 0.1.0
+generated: "2025-12-03T15:13:44.058722579Z"
