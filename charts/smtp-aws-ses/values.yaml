@@ -110,6 +110,10 @@ tolerations: []
 
 affinity: {}
 
+# postfix options
+postfix:
+  recipientRestrictions: "permit_mynetworks permit_sasl_authenticated reject_unauth_destination"
+    
 # AWS SES Configuration
 aws:
   region: us-east-1
