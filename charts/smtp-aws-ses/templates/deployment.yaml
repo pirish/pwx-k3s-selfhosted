@@ -41,9 +41,9 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
-                name: smtp-aws-ses-config
+                name: {{ include "smtp-aws-ses.fullname" . }}-config
             - secretRef:
-                name: smtp-aws-ses-secrets
+                name: {{ include "smtp-aws-ses.fullname" . }}-secrets
           ports:
             - name: smtp
               containerPort: {{ .Values.service.port }}
