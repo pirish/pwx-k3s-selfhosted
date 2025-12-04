@@ -3,6 +3,16 @@ entries:
   cloudflared:
   - apiVersion: v2
     appVersion: 2025.11.1
+    created: "2025-12-04T16:35:16.793377491Z"
+    description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
+    digest: 4911f9f9bb95f12aff82bf4dc19b7ca2c3190bfaebe02c74650b3e47c9682e7e
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/cloudflared-0.1.3/cloudflared-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: 2025.11.1
     created: "2025-12-04T15:19:28.373253124Z"
     description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
     digest: b8269524af9733c903d990d35e2a07ce043ee398152ad04bed62966153c20dea
@@ -184,4 +194,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2025-12-04T15:19:28.373295413Z"
+generated: "2025-12-04T16:35:16.793429749Z"
