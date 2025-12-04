@@ -53,7 +53,7 @@ spec:
             - "0.0.0.0:2000"
             - "run"
           ports:
-            - name: http
+            - name: metrics
               containerPort: {{ .Values.service.port }}
               protocol: TCP
           {{- with .Values.livenessProbe }}

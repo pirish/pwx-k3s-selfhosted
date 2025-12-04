@@ -4,12 +4,16 @@ metadata:
   name: {{ include "cloudflared.fullname" . }}
   labels:
     {{- include "cloudflared.labels" . | nindent 4 }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   type: {{ .Values.service.type }}
   ports:
     - port: {{ .Values.service.port }}
-      targetPort: http
+      targetPort: metrics
       protocol: TCP
-      name: http
+      name: metrics
   selector:
     {{- include "cloudflared.selectorLabels" . | nindent 4 }}
