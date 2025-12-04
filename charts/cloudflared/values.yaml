@@ -92,13 +92,13 @@ resources: {}
 livenessProbe:
   httpGet:
     path: /ready
-    port: http
+    port: metrics
   initialDelaySeconds: 30
   periodSeconds: 10
 readinessProbe:
   httpGet:
     path: /ready
-    port: http
+    port: metrics
 
 # This section is for setting up autoscaling more information can be found here: https://kubernetes.io/docs/concepts/workloads/autoscaling/
 autoscaling:
