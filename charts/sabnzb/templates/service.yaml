@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: {{ include "sabnzb.fullname" . }}
+  name: {{ include "sabnzb.fullname" . }}-service
   labels:
     {{- include "sabnzb.labels" . | nindent 4 }}
 spec:
