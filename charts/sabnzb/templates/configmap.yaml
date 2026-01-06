@@ -1,0 +1,11 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sabnzb.fullname" . }}-env
+  labels:
+    {{- include "sabnzb.labels" . | nindent 4 }}
+data:
+  PUID: "{{ .Values.sabnzb.puid }}"
+  PGID: "{{ .Values.sabnzb.pgid }}"
+  TZ: {{ .Values.sabnzb.timezone }}
