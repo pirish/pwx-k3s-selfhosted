@@ -113,6 +113,17 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
     version: 0.1.0
+  sabnzb:
+  - apiVersion: v2
+    appVersion: 4.5.5-ls239
+    created: "2026-01-06T00:11:33.091908685Z"
+    description: A Helm chart for SabNZBB from Linuxserver.io
+    digest: b2b1641fad69afd9ebf27cedcda88982b491343d799b50f25850f3e12448b65f
+    name: sabnzb
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/sabnzb-0.1.0/sabnzb-0.1.0.tgz
+    version: 0.1.0
   smtp-aws-ses:
   - apiVersion: v2
     appVersion: latest
@@ -204,4 +215,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-06T00:08:08.407039159Z"
+generated: "2026-01-06T00:11:33.091952267Z"
