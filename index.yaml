@@ -135,6 +135,16 @@ entries:
     version: 0.1.0
   sabnzb:
   - apiVersion: v2
+    appVersion: 4.5.5
+    created: "2026-01-14T15:10:11.407410468Z"
+    description: A Helm chart for SabNZBB from Linuxserver.io
+    digest: 3b52c7431808e3b711e94e80128bc62c258f3f280898a5fea5f542f4e3f62688
+    name: sabnzb
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/sabnzb-0.1.6/sabnzb-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     appVersion: 4.5.5-ls239
     created: "2026-01-14T02:33:45.895581932Z"
     description: A Helm chart for SabNZBB from Linuxserver.io
@@ -275,4 +285,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-14T02:33:45.895638953Z"
+generated: "2026-01-14T15:10:11.407488974Z"
