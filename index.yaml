@@ -53,6 +53,16 @@ entries:
     version: 0.1.0
   copyparty:
   - apiVersion: v2
+    appVersion: 1.20.1
+    created: "2026-01-14T01:47:46.235991552Z"
+    description: A Helm chart for Kubernetes
+    digest: 7f9e053134a23a70051ac28ed25ac075b729c7f3ae9857e941ddf878f8d69103
+    name: copyparty
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.2/copyparty-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
     appVersion: 1.19.17
     created: "2025-10-22T20:54:23.801508832Z"
     description: A Helm chart for Kubernetes
@@ -63,6 +73,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.1/copyparty-0.1.1.tgz
     version: 0.1.1
   mousehole:
+  - apiVersion: v2
+    appVersion: 0.2.0
+    created: "2026-01-14T01:47:46.422464081Z"
+    description: A Helm chart for Mousehole
+    digest: 1523ab0c6c54b3cd8d81e19c4c40f889f7daaffd4edaae39c9efe348dab661d0
+    name: mousehole
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.5/mousehole-0.1.5.tgz
+    version: 0.1.5
   - apiVersion: v2
     appVersion: 0.2.0
     created: "2025-10-23T20:19:38.855019842Z"
@@ -114,6 +134,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
     version: 0.1.0
   sabnzb:
+  - apiVersion: v2
+    appVersion: 4.5.5
+    created: "2026-01-14T01:47:46.653499852Z"
+    description: A Helm chart for SabNZBB from Linuxserver.io
+    digest: b30d63cdb4fe16623d44d179356baf650811b93dfa1d3304a179913ffc2a1131
+    name: sabnzb
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/sabnzb-0.1.3/sabnzb-0.1.3.tgz
+    version: 0.1.3
   - apiVersion: v2
     appVersion: 4.5.5-ls239
     created: "2026-01-06T01:04:03.794152005Z"
@@ -235,4 +265,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-06T01:04:03.794212358Z"
+generated: "2026-01-14T01:47:46.653583077Z"
