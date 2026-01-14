@@ -5,6 +5,10 @@ metadata:
   name: {{ include "sabnzb.fullname" . }}-ingressroute
   labels:
     {{- include "sabnzb.labels" . | nindent 4 }}
+  {{- with .Values.ingressRoute.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   entryPoints:
     - web
