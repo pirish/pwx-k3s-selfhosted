@@ -1,0 +1,15 @@
+---
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "shelfarr-app.fullname" . }}-env
+  labels:
+    {{- include "shelfarr-app.labels" . | nindent 4 }}
+data:
+  PORT: "{{ .Values.shelfarr.config.port }}"
+  ABR_DRY_RUN: "{{ .Values.shelfarr.config.dryRun }}"
+  ABR_BACKUP: "{{ .Values.shelfarr.config.backup }}"
+  ABR_FILENAME_TEMPLATE: "{{ .Values.shelfarr.config.filenameTemplate }}"
+  ABR_ALLOW_DIRECTORY_MOVE: "{{ .Values.shelfarr.config.allowDirectoryMove }}"
+  ABS_BASE_URL: "{{ .Values.shelfarr.config.baseUrl }}"
+  ABS_TOKEN: "{{ .Values.shelfarr.config.token }}"
