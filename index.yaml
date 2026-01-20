@@ -197,6 +197,16 @@ entries:
   shelfarr-app:
   - apiVersion: v2
     appVersion: "0.73"
+    created: "2026-01-20T02:20:10.174407969Z"
+    description: A Helm chart for shelffarr https://shelfarr.app
+    digest: 4063c4c18f57e8e226ee3f2802abcf41fd7c8bf2bd3079c400bbe595fdeca725
+    name: shelfarr-app
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/shelfarr-app-0.1.3/shelfarr-app-0.1.3.tgz
+    version: 0.1.3
+  - apiVersion: v2
+    appVersion: "0.73"
     created: "2026-01-20T02:16:20.35159789Z"
     description: A Helm chart for shelffarr https://shelfarr.app
     digest: 9eee071f7a259f731b0e46bdb893d872edabacd4f4648dab42ff11dd18759062
@@ -316,4 +326,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-20T02:16:20.351672384Z"
+generated: "2026-01-20T02:20:10.174489891Z"
