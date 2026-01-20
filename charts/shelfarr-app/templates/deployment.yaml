@@ -69,7 +69,7 @@ spec:
       volumes:
         - name: data
           persistentVolumeClaim:
-            claimName: shelfarr-config-pvc
+            claimName: {{ include "shelfarr-app.fullname" . }}-config-pvc
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
