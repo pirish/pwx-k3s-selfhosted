@@ -194,6 +194,17 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/sabnzb-0.1.0/sabnzb-0.1.0.tgz
     version: 0.1.0
+  shelfarr-app:
+  - apiVersion: v2
+    appVersion: "0.73"
+    created: "2026-01-20T01:42:19.748058674Z"
+    description: A Helm chart for shelffarr https://shelfarr.app
+    digest: 94e031e753c6e2fd9570f12763df0c8ff3a52d1afc9f25e0e294ebefbbc0ac81
+    name: shelfarr-app
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/shelfarr-app-0.1.0/shelfarr-app-0.1.0.tgz
+    version: 0.1.0
   smtp-aws-ses:
   - apiVersion: v2
     appVersion: latest
@@ -285,4 +296,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-14T15:10:11.407488974Z"
+generated: "2026-01-20T01:42:19.748114529Z"
