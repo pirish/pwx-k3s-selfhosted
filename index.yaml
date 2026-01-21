@@ -72,6 +72,17 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.1/copyparty-0.1.1.tgz
     version: 0.1.1
+  koreader-sync:
+  - apiVersion: v2
+    appVersion: 0.0.5
+    created: "2026-01-21T01:15:13.681268051Z"
+    description: A Helm chart for Koreader Sync https://github.com/b1n4ryj4n/koreader-sync
+    digest: 74442064a54fe5dc015ac207d911b954d126774a80791f671c504f475230551d
+    name: koreader-sync
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/koreader-sync-0.1.0/koreader-sync-0.1.0.tgz
+    version: 0.1.0
   mousehole:
   - apiVersion: v2
     appVersion: 0.2.0
@@ -326,4 +337,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-20T02:20:10.174489891Z"
+generated: "2026-01-21T01:15:13.681350084Z"
