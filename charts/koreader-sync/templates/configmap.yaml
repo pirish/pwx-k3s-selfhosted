@@ -6,5 +6,5 @@ metadata:
   labels:
     {{- include "koreader-sync.labels" . | nindent 4 }}
 data:
-  RECEIVE_RANDOM_DEVICE_ID: "{{ .Values.koreader-sync.config.receiveRandomDeviceId }}"
-  OPEN_REGISTRATIONS: "{{ .Values.koreader-sync.config.openRegistrations }}"
+  RECEIVE_RANDOM_DEVICE_ID: "{{ .Values.koreaderSync.config.receiveRandomDeviceId }}"
+  OPEN_REGISTRATIONS: "{{ .Values.koreaderSync.config.openRegistrations }}"
