@@ -118,8 +118,8 @@ postfix:
 # AWS SES Configuration
 aws:
   region: us-east-1
-  accessKeyId: YOUR_AWS_ACCESS_KEY_ID
-  secretAccessKey: YOUR_AWS_SECRET_ACCESS_KEY
+  # a secret with the following keys: RELAY_LOGIN, RELAY_PASSWORD is required
+  secretName: smtp-aws-ses-secrets
   ses:
     port: 587
     fromEmail: YOUR_FROM_EMAIL_ADDRESS

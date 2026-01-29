@@ -43,7 +43,7 @@ spec:
             - configMapRef:
                 name: {{ include "smtp-aws-ses.fullname" . }}-config
             - secretRef:
-                name: {{ include "smtp-aws-ses.fullname" . }}-secrets
+                name: {{ .Values.aws.secretName }}
           ports:
             - name: smtp
               containerPort: {{ .Values.service.port }}
