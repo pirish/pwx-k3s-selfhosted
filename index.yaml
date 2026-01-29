@@ -269,6 +269,16 @@ entries:
   smtp-aws-ses:
   - apiVersion: v2
     appVersion: latest
+    created: "2026-01-29T19:13:47.082902867Z"
+    description: A Helm chart for deploying an SMTP server using AWS SES
+    digest: 4d24da05f753fef8f1d95ba6003226ac1c0c28e93c80c2d9cbf7300c2d6b09d0
+    name: smtp-aws-ses
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.2.4/smtp-aws-ses-0.2.4.tgz
+    version: 0.2.4
+  - apiVersion: v2
+    appVersion: latest
     created: "2025-12-04T04:47:10.336527598Z"
     description: A Helm chart for deploying an SMTP server using AWS SES
     digest: 1646a9f9a42c271125e4c9d313989de18637039234d940372a16bf1b0d44761b
@@ -357,4 +367,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-01-29T04:03:37.002183221Z"
+generated: "2026-01-29T19:13:47.083024202Z"
