@@ -129,4 +129,3 @@ affinity: {}
 
 CFConfig:
   metricsCidr: "127.0.0.1"
-  tunnelToken: ""
