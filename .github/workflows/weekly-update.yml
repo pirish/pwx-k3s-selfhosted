@@ -1,0 +1,44 @@
+name: Weekly Chart Update
+
+on:
+  schedule:
+    - cron: '0 0 * * 0' # Run at midnight on Sunday
+  workflow_dispatch: # Allow manual trigger
+
+jobs:
+  update-charts:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x'
+
+      - name: Install dependencies
+        run: |
+          pip install requests pyyaml packaging
+
+      - name: Run update script
+        run: |
+          python3 scripts/update_charts.py
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v6
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "chore: update helm chart container images"
+          title: "chore: update helm chart container images"
+          body: |
+            Automated update of container images in Helm charts.
+
+            This PR was created automatically by the `weekly-update` workflow.
+          branch: "chore/update-charts"
+          base: "main"
+          delete-branch: true
