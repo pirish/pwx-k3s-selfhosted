@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   cloudflared:
   - apiVersion: v2
+    appVersion: 2026.2.0
+    created: "2026-02-15T04:48:50.821094302Z"
+    description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
+    digest: 46f36d513b96356beae54cbfdc8b990afc1bc592ac4175429bf40f097cbf4c4e
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/cloudflared-0.1.7/cloudflared-0.1.7.tgz
+    version: 0.1.7
+  - apiVersion: v2
     appVersion: 2026.1.2
     created: "2026-02-04T05:06:16.105942367Z"
     description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
@@ -72,6 +82,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/cloudflared-0.1.0/cloudflared-0.1.0.tgz
     version: 0.1.0
   copyparty:
+  - apiVersion: v2
+    appVersion: 1.20.7
+    created: "2026-02-15T04:48:50.965214028Z"
+    description: A Helm chart for Kubernetes
+    digest: 547b1f8cc197a3ce3a2de213de507b44f3cd0bdc445d16a406c34c54ccd84888
+    name: copyparty
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.4/copyparty-0.1.4.tgz
+    version: 0.1.4
   - apiVersion: v2
     appVersion: 1.20.6
     created: "2026-02-04T05:06:16.256461529Z"
@@ -387,4 +407,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-02-04T05:06:16.256553199Z"
+generated: "2026-02-15T04:48:50.965313275Z"
