@@ -224,6 +224,17 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.0/mousehole-0.1.0.tgz
     version: 0.1.0
+  obsidian:
+  - apiVersion: v2
+    appVersion: 1.13.7
+    created: "2026-08-28T17:38:17.887160855Z"
+    description: A Helm chart for Obsidian desktop via LinuxServer.io (KasmVNC)
+    digest: 22e69f19c818c09939c20afaad7d5c3ff7ae7ae6bb6eb906117f5456fc9da6bd
+    name: obsidian
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/obsidian-0.1.1/obsidian-0.1.1.tgz
+    version: 0.1.1
   sabnzb:
   - apiVersion: v2
     appVersion: 4.5.5
@@ -427,4 +438,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-04-21T20:35:44.883053217Z"
+generated: "2026-08-28T17:38:17.887240571Z"
