@@ -1,0 +1,18 @@
+# Patterns to ignore when packaging charts.
+.DS_Store
+# Common VCS
+.git/
+.gitignore
+# Common editor artifacts
+*.swp
+*.bak
+*.tmp
+*.orig
+*~
+# Subchart directories
+charts/
+# Crumb files
+.project
+.idea/
+*.tmproj
+.vscode/
