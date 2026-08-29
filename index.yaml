@@ -227,6 +227,16 @@ entries:
   obsidian:
   - apiVersion: v2
     appVersion: 1.13.7
+    created: "2026-08-29T03:45:40.669842713Z"
+    description: A Helm chart for Obsidian desktop via LinuxServer.io (Selkies/KasmVNC/Wayland)
+    digest: 17cecdf6b5c694cdce5e9e67c3147b9a3d9024ea58f1a618c4db15d261de3de3
+    name: obsidian
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/obsidian-0.2.0/obsidian-0.2.0.tgz
+    version: 0.2.0
+  - apiVersion: v2
+    appVersion: 1.13.7
     created: "2026-08-28T17:38:17.887160855Z"
     description: A Helm chart for Obsidian desktop via LinuxServer.io (KasmVNC)
     digest: 22e69f19c818c09939c20afaad7d5c3ff7ae7ae6bb6eb906117f5456fc9da6bd
@@ -438,4 +448,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-28T17:38:17.887240571Z"
+generated: "2026-08-29T03:45:40.669937722Z"
