@@ -47,9 +47,14 @@ spec:
           {{- toYaml . | nindent 10 }}
           {{- end }}
           ports:
-            - name: http
+            - name: https
               containerPort: {{ .Values.service.port }}
               protocol: TCP
+            {{- if .Values.service.httpEnabled }}
+            - name: http
+              containerPort: {{ .Values.service.httpPort | default 3000 }}
+              protocol: TCP
+            {{- end }}
             {{- if and .Values.service.restApi .Values.service.restApi.enabled }}
             - name: rest-api
               containerPort: {{ .Values.service.restApi.port }}
@@ -63,10 +68,14 @@ spec:
           readinessProbe:
             {{- toYaml . | nindent 12 }}
           {{- end }}
-          {{- with .Values.resources }}
           resources:
+            {{- if and .Values.gpu.enabled .Values.gpu.nvidia.enabled }}
+            limits:
+              nvidia.com/gpu: {{ .Values.gpu.nvidia.count | default 1 }}
+            {{- end }}
+            {{- with .Values.resources }}
             {{- toYaml . | nindent 12 }}
-          {{- end }}
+            {{- end }}
           volumeMounts:
             {{- if .Values.persistence.config.enabled }}
             - name: config
@@ -75,6 +84,10 @@ spec:
             {{- if .Values.dshm.enabled }}
             - name: dshm
               mountPath: /dev/shm
+            {{- end }}
+            {{- if .Values.gpu.enabled }}
+            - name: dri
+              mountPath: /dev/dri
             {{- end }}
             {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
@@ -90,6 +103,11 @@ spec:
           emptyDir:
             medium: Memory
             sizeLimit: {{ .Values.dshm.sizeLimit | default "1Gi" }}
+        {{- end }}
+        {{- if .Values.gpu.enabled }}
+        - name: dri
+          hostPath:
+            path: {{ .Values.gpu.driDevice | default "/dev/dri" }}
         {{- end }}
         {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}

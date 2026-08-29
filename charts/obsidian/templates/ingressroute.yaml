@@ -19,6 +19,9 @@ spec:
       services:
         - name: {{ include "obsidian.fullname" . }}-service
           port: {{ .Values.service.port }}
+          {{- if .Values.ingressRoute.scheme }}
+          scheme: {{ .Values.ingressRoute.scheme }}
+          {{- end }}
   {{- if .Values.ingressRoute.tls.enabled }}
   tls:
     secretName: {{ .Values.ingressRoute.tls.secretName }}

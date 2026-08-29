@@ -6,14 +6,136 @@ metadata:
   labels:
     {{- include "obsidian.labels" . | nindent 4 }}
 data:
-  PUID: "{{ .Values.obsidian.puid }}"
-  PGID: "{{ .Values.obsidian.pgid }}"
-  TZ: {{ .Values.obsidian.timezone | quote }}
+  PUID: "{{ .Values.obsidian.puid | default 1000 }}"
+  PGID: "{{ .Values.obsidian.pgid | default 1000 }}"
+  TZ: {{ .Values.obsidian.timezone | default "Etc/UTC" | quote }}
+  {{- if .Values.obsidian.umask }}
+  UMASK: {{ .Values.obsidian.umask | quote }}
+  {{- end }}
   {{- if .Values.obsidian.customUser }}
   CUSTOM_USER: {{ .Values.obsidian.customUser | quote }}
   {{- end }}
   {{- if .Values.obsidian.password }}
   PASSWORD: {{ .Values.obsidian.password | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.customPort }}
+  CUSTOM_PORT: {{ .Values.obsidian.customPort | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.customHttpsPort }}
+  CUSTOM_HTTPS_PORT: {{ .Values.obsidian.customHttpsPort | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.customWsPort }}
+  CUSTOM_WS_PORT: {{ .Values.obsidian.customWsPort | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.subfolder }}
+  SUBFOLDER: {{ .Values.obsidian.subfolder | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.title }}
+  TITLE: {{ .Values.obsidian.title | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.dashboard }}
+  DASHBOARD: {{ .Values.obsidian.dashboard | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.fileManagerPath }}
+  FILE_MANAGER_PATH: {{ .Values.obsidian.fileManagerPath | quote }}
+  {{- end }}
+  {{- if not (kindIs "invalid" .Values.obsidian.startDocker) }}
+  {{- if not (eq (toString .Values.obsidian.startDocker) "") }}
+  START_DOCKER: {{ .Values.obsidian.startDocker | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.obsidian.disableIpv6 }}
+  DISABLE_IPV6: "true"
+  {{- end }}
+  {{- if .Values.obsidian.lcAll }}
+  LC_ALL: {{ .Values.obsidian.lcAll | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.noDecor }}
+  NO_DECOR: "true"
+  {{- end }}
+  {{- if .Values.obsidian.noFull }}
+  NO_FULL: "true"
+  {{- end }}
+  {{- if .Values.obsidian.noGamepad }}
+  NO_GAMEPAD: "true"
+  {{- end }}
+  {{- if .Values.obsidian.disableZink }}
+  DISABLE_ZINK: "true"
+  {{- end }}
+  {{- if .Values.obsidian.disableDri3 }}
+  DISABLE_DRI3: "true"
+  {{- end }}
+  {{- if .Values.obsidian.maxRes }}
+  MAX_RES: {{ .Values.obsidian.maxRes | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.watermarkPng }}
+  WATERMARK_PNG: {{ .Values.obsidian.watermarkPng | quote }}
+  {{- end }}
+  {{- if not (kindIs "invalid" .Values.obsidian.watermarkLocation) }}
+  {{- if not (eq (toString .Values.obsidian.watermarkLocation) "") }}
+  WATERMARK_LOCATION: {{ .Values.obsidian.watermarkLocation | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.obsidian.dockerMods }}
+  DOCKER_MODS: {{ .Values.obsidian.dockerMods | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.installPackages }}
+  INSTALL_PACKAGES: {{ .Values.obsidian.installPackages | quote }}
+  {{- end }}
+  {{- if not (kindIs "invalid" .Values.obsidian.pixelfluxWayland) }}
+  {{- if not (eq (toString .Values.obsidian.pixelfluxWayland) "") }}
+  PIXELFLUX_WAYLAND: {{ .Values.obsidian.pixelfluxWayland | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if not (kindIs "invalid" .Values.obsidian.selkiesDesktop) }}
+  {{- if not (eq (toString .Values.obsidian.selkiesDesktop) "") }}
+  SELKIES_DESKTOP: {{ .Values.obsidian.selkiesDesktop | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if not (kindIs "invalid" .Values.obsidian.autoGpu) }}
+  {{- if not (eq (toString .Values.obsidian.autoGpu) "") }}
+  AUTO_GPU: {{ .Values.obsidian.autoGpu | quote }}
+  {{- end }}
+  {{- end }}
+  {{- if .Values.obsidian.drinode }}
+  DRINODE: {{ .Values.obsidian.drinode | quote }}
+  {{- end }}
+  {{- if .Values.obsidian.driNode }}
+  DRI_NODE: {{ .Values.obsidian.driNode | quote }}
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.hardenDesktop }}
+  HARDEN_DESKTOP: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.hardenOpenbox }}
+  HARDEN_OPENBOX: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.disableOpenTools }}
+  DISABLE_OPEN_TOOLS: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.disableSudo }}
+  DISABLE_SUDO: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.disableTerminals }}
+  DISABLE_TERMINALS: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.disableCloseButton }}
+  DISABLE_CLOSE_BUTTON: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.disableMouseButtons }}
+  DISABLE_MOUSE_BUTTONS: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.hardenKeybinds }}
+  HARDEN_KEYBINDS: "true"
+  {{- end }}
+  {{- if and .Values.obsidian.hardening .Values.obsidian.hardening.restartApp }}
+  RESTART_APP: "true"
+  {{- end }}
+  {{- range $k, $v := .Values.obsidian.selkies }}
+  {{- if not (kindIs "invalid" $v) }}
+  {{- if not (eq (toString $v) "") }}
+  {{ $k }}: {{ $v | quote }}
+  {{- end }}
+  {{- end }}
   {{- end }}
   {{- range $key, $val := .Values.extraEnv }}
   {{ $key }}: {{ $val | quote }}
