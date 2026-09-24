@@ -2,6 +2,16 @@ apiVersion: v1
 entries:
   cloudflared:
   - apiVersion: v2
+    appVersion: 2026.9.1
+    created: "2026-09-24T02:06:07.563842823Z"
+    description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
+    digest: f9036dbdb60889aaa887af8e77178e1dd150a8f0f625de51777e657fb75bffa7
+    name: cloudflared
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/cloudflared-0.1.9/cloudflared-0.1.9.tgz
+    version: 0.1.9
+  - apiVersion: v2
     appVersion: 2026.3.0
     created: "2026-04-21T20:35:44.73582237Z"
     description: Helm chart for deploying Cloudflared as a tunnel to Cloudflare
@@ -93,6 +103,16 @@ entries:
     version: 0.1.0
   copyparty:
   - apiVersion: v2
+    appVersion: 1.20.24
+    created: "2026-09-24T02:06:07.761725608Z"
+    description: A Helm chart for Kubernetes
+    digest: 30772a408d09eba21ce477b31ee03bcaa84872794068aae79d3faaec23f9bd9d
+    name: copyparty
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/copyparty-0.1.6/copyparty-0.1.6.tgz
+    version: 0.1.6
+  - apiVersion: v2
     appVersion: 1.20.13
     created: "2026-04-21T20:35:44.882957659Z"
     description: A Helm chart for Kubernetes
@@ -145,6 +165,16 @@ entries:
   koreader-sync:
   - apiVersion: v2
     appVersion: 0.0.5
+    created: "2026-09-24T02:06:07.974576045Z"
+    description: A Helm chart for Koreader Sync https://github.com/b1n4ryj4n/koreader-sync
+    digest: 6a672b6b9b968ca3affb57056617d57b0054efaf27a1836f8b93a558e06cf04d
+    name: koreader-sync
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/koreader-sync-0.1.2/koreader-sync-0.1.2.tgz
+    version: 0.1.2
+  - apiVersion: v2
+    appVersion: 0.0.5
     created: "2026-01-21T01:25:16.298456671Z"
     description: A Helm chart for Koreader Sync https://github.com/b1n4ryj4n/koreader-sync
     digest: 74fb82499affe9e57e0ad8df6accdce57bc5d42995a340b73aaed306fffe9cdc
@@ -164,6 +194,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/koreader-sync-0.1.0/koreader-sync-0.1.0.tgz
     version: 0.1.0
   mousehole:
+  - apiVersion: v2
+    appVersion: 0.5.0
+    created: "2026-09-24T02:06:08.227428818Z"
+    description: A Helm chart for Mousehole
+    digest: 59a25c0ed6e533c3dea533b3ee99a4b8cab2558fbcef12b4e736cff010e14b17
+    name: mousehole
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/mousehole-0.1.6/mousehole-0.1.6.tgz
+    version: 0.1.6
   - apiVersion: v2
     appVersion: 0.2.0
     created: "2026-01-14T01:47:46.422464081Z"
@@ -227,6 +267,16 @@ entries:
   obsidian:
   - apiVersion: v2
     appVersion: 1.13.7
+    created: "2026-09-24T02:06:08.437468003Z"
+    description: A Helm chart for Obsidian desktop via LinuxServer.io (Selkies/KasmVNC/Wayland)
+    digest: c4784a72363143fd1b318bd1d71af2a3fb487b6b69ee8a31e87817f056b72b00
+    name: obsidian
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/obsidian-0.2.1/obsidian-0.2.1.tgz
+    version: 0.2.1
+  - apiVersion: v2
+    appVersion: 1.13.7
     created: "2026-08-29T03:45:40.669842713Z"
     description: A Helm chart for Obsidian desktop via LinuxServer.io (Selkies/KasmVNC/Wayland)
     digest: 17cecdf6b5c694cdce5e9e67c3147b9a3d9024ea58f1a618c4db15d261de3de3
@@ -246,6 +296,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/obsidian-0.1.1/obsidian-0.1.1.tgz
     version: 0.1.1
   sabnzb:
+  - apiVersion: v2
+    appVersion: 5.1.3
+    created: "2026-09-24T02:06:08.643828055Z"
+    description: A Helm chart for SabNZBB from Linuxserver.io
+    digest: 3d0b692cbffda220e8c229c66283559d13da53d57c26f555eb4d306aa2c1239f
+    name: sabnzb
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/sabnzb-0.1.7/sabnzb-0.1.7.tgz
+    version: 0.1.7
   - apiVersion: v2
     appVersion: 4.5.5
     created: "2026-01-14T15:10:11.407410468Z"
@@ -309,6 +369,16 @@ entries:
   shelfarr-app:
   - apiVersion: v2
     appVersion: "0.73"
+    created: "2026-09-24T02:06:08.845333391Z"
+    description: A Helm chart for shelffarr https://shelfarr.app
+    digest: dee9ea391a1cf3181224a590c4d4716079e5c3c374e53c880e5028b8b31186cc
+    name: shelfarr-app
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/shelfarr-app-0.1.4/shelfarr-app-0.1.4.tgz
+    version: 0.1.4
+  - apiVersion: v2
+    appVersion: "0.73"
     created: "2026-01-20T02:20:10.174407969Z"
     description: A Helm chart for shelffarr https://shelfarr.app
     digest: 4063c4c18f57e8e226ee3f2802abcf41fd7c8bf2bd3079c400bbe595fdeca725
@@ -348,6 +418,16 @@ entries:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/shelfarr-app-0.1.0/shelfarr-app-0.1.0.tgz
     version: 0.1.0
   smtp-aws-ses:
+  - apiVersion: v2
+    appVersion: latest
+    created: "2026-09-24T02:06:09.137990201Z"
+    description: A Helm chart for deploying an SMTP server using AWS SES
+    digest: b453e97b3d61cd587d55f91f23a06a410581bafe5d3705bc8edc46fa3eb1ff00
+    name: smtp-aws-ses
+    type: application
+    urls:
+    - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.2.5/smtp-aws-ses-0.2.5.tgz
+    version: 0.2.5
   - apiVersion: v2
     appVersion: latest
     created: "2026-01-29T19:13:47.082902867Z"
@@ -448,4 +528,4 @@ entries:
     urls:
     - https://github.com/pirish/pwx-k3s-selfhosted/releases/download/smtp-aws-ses-0.1.0/smtp-aws-ses-0.1.0.tgz
     version: 0.1.0
-generated: "2026-08-29T03:45:40.669937722Z"
+generated: "2026-09-24T02:06:09.138092805Z"
