@@ -42,7 +42,26 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           envFrom:
             - configMapRef:
-                name: {{ include "koreader-sync.fullname" . }}-env  
+                name: {{ include "koreader-sync.fullname" . }}-env
+            {{- if .Values.secret.existingSecret }}
+            - secretRef:
+                name: {{ .Values.secret.existingSecret }}
+            {{- else if and .Values.secret.enabled .Values.secret.data }}
+            - secretRef:
+                name: {{ include "koreader-sync.fullname" . }}-secret
+            {{- end }}
+            {{- with .Values.extraEnvFrom }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- if or .Values.env .Values.extraEnv }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -61,16 +80,24 @@ spec:
           {{- end }}
           
           volumeMounts:
+          {{- if or .Values.persistence.enabled .Values.persistence.existingClaim }}
           - name: data
             mountPath: /data
+          {{- end }}
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
       
       volumes:
+      {{- if .Values.persistence.existingClaim }}
+      - name: data
+        persistentVolumeClaim:
+          claimName: {{ .Values.persistence.existingClaim }}
+      {{- else if .Values.persistence.enabled }}
       - name: data
         persistentVolumeClaim:
           claimName: {{ include "koreader-sync.fullname" . }}-data-pvc
+      {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}

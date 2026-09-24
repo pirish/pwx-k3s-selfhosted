@@ -1,12 +1,17 @@
----
+{{- if and .Values.persistence.enabled (not .Values.persistence.existingClaim) -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "shelfarr-app.fullname" . }}-config-pvc
+  labels:
+    {{- include "shelfarr-app.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
+    - {{ .Values.persistence.accessMode | default "ReadWriteOnce" }}
+  {{- if .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.storageClass | quote }}
+  {{- end }}
   resources:
     requests:
-      storage: 500Mi
+      storage: {{ .Values.persistence.size | default "500Mi" }}
+{{- end }}

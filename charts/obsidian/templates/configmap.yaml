@@ -15,7 +15,7 @@ data:
   {{- if .Values.obsidian.customUser }}
   CUSTOM_USER: {{ .Values.obsidian.customUser | quote }}
   {{- end }}
-  {{- if .Values.obsidian.password }}
+  {{- if and .Values.obsidian.password (eq .Values.obsidian.useSecret false) }}
   PASSWORD: {{ .Values.obsidian.password | quote }}
   {{- end }}
   {{- if .Values.obsidian.customPort }}

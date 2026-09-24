@@ -1,12 +1,35 @@
----
+{{- if and .Values.persistence.config.enabled (not .Values.persistence.config.existingClaim) -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "copyparty.fullname" . }}-config-pvc
+  labels:
+    {{- include "copyparty.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
+    - {{ .Values.persistence.config.accessMode | default "ReadWriteOnce" }}
+  {{- if .Values.persistence.config.storageClass }}
+  storageClassName: {{ .Values.persistence.config.storageClass | quote }}
+  {{- end }}
   resources:
     requests:
-      storage: 500Mi
+      storage: {{ .Values.persistence.config.size | default "500Mi" }}
+{{- end }}
+{{- if and .Values.persistence.data .Values.persistence.data.enabled (not .Values.persistence.data.existingClaim) }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "copyparty.fullname" . }}-data-pvc
+  labels:
+    {{- include "copyparty.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.data.accessMode | default "ReadWriteOnce" }}
+  {{- if .Values.persistence.data.storageClass }}
+  storageClassName: {{ .Values.persistence.data.storageClass | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.data.size | default "10Gi" }}
+{{- end }}

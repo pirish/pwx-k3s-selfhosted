@@ -6,9 +6,9 @@ metadata:
   labels:
     {{- include "copyparty.labels" . | nindent 4 }}
 data:
-  LD_PRELOAD: "/usr/lib/libmimalloc-secure.so.NOPE"
-  PYTHONUNBUFFERED: "1"
-{{ if .Values.configMapConfig.enabled -}}
+  LD_PRELOAD: {{ .Values.copyparty.ldPreload | default "/usr/lib/libmimalloc-secure.so.NOPE" | quote }}
+  PYTHONUNBUFFERED: {{ .Values.copyparty.pythonUnbuffered | default "1" | quote }}
+{{- if .Values.configMapConfig.enabled }}
 ---
 apiVersion: v1
 kind: ConfigMap

@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "sabnzb.fullname" $ }}
+                name: {{ include "sabnzb.fullname" $ }}-service
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

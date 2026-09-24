@@ -12,4 +12,6 @@ data:
   ABR_FILENAME_TEMPLATE: "{{ .Values.shelfarr.config.filenameTemplate }}"
   ABR_ALLOW_DIRECTORY_MOVE: "{{ .Values.shelfarr.config.allowDirectoryMove }}"
   ABS_BASE_URL: "{{ .Values.shelfarr.config.baseUrl }}"
+  {{- if and .Values.shelfarr.config.token (eq .Values.shelfarr.secret.useSecret false) }}
   ABS_TOKEN: "{{ .Values.shelfarr.config.token }}"
+  {{- end }}

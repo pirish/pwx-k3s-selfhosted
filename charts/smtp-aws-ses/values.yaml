@@ -111,6 +111,16 @@ tolerations: []
 
 affinity: {}
 
+# Extra environment variables as a list of name/value pairs
+env: []
+extraEnv: []
+
+# Extra environment sources (ConfigMaps or Secrets) to load via envFrom
+extraEnvFrom: []
+
+# Additional key/value pairs to inject into the ConfigMap
+extraConfig: {}
+
 # postfix options
 postfix:
   recipientRestrictions: "permit_mynetworks permit_sasl_authenticated reject_unauth_destination"
@@ -118,11 +128,26 @@ postfix:
 # AWS SES Configuration
 aws:
   region: us-east-1
-  # a secret with the following keys: RELAY_LOGIN, RELAY_PASSWORD is required
+  # Optional custom relay host (default: [email-smtp.<region>.amazonaws.com])
+  relayHost: ""
+  # Credentials for AWS SES SMTP relay (if specified, a Kubernetes Secret is automatically created)
+  relayLogin: ""
+  relayPassword: ""
+  # Secret name to create or use (defaults to smtp-aws-ses-secrets)
   secretName: smtp-aws-ses-secrets
+  # Use an existing Secret containing RELAY_LOGIN and RELAY_PASSWORD instead of creating one
+  existingSecret: ""
+  # Explicit secret creation control
+  secret:
+    create: false
+    data: {}
   ses:
     port: 587
     fromEmail: YOUR_FROM_EMAIL_ADDRESS
     toEmail: YOUR_TO_EMAIL_ADDRESS
     useTls: "yes"
     tlsVerify: "may"
+    # Optional message size limit in bytes (e.g. "26214400" for 25MB)
+    messageSizeLimit: ""
+    # Optional comma/space separated list of allowed sender domains
+    allowedSenderDomains: ""

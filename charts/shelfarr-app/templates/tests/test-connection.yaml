@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "shelfarr-app.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "shelfarr-app.fullname" . }}-service:{{ .Values.service.port }}']
   restartPolicy: Never

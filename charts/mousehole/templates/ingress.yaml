@@ -35,7 +35,7 @@ spec:
             {{- end }}
             backend:
               service:
-                name: {{ include "mousehole.fullname" $ }}
+                name: {{ include "mousehole.fullname" $ }}-service
                 port:
                   number: {{ $.Values.service.port }}
           {{- end }}

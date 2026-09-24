@@ -48,8 +48,8 @@ def get_latest_tag_dockerhub(repo):
         if not clean_tags:
             return None
 
-        # Sort by version
-        clean_tags.sort(key=lambda t: parse_version(t), reverse=True)
+        # Sort by version, preferring more specific tags (e.g. 0.5.0 over 0.5) when versions are equal
+        clean_tags.sort(key=lambda t: (parse_version(t), len(t.split('.')), len(t)), reverse=True)
         return clean_tags[0]
 
     except Exception as e:

@@ -167,6 +167,10 @@ obsidian:
   # Basic HTTP authentication (optional)
   customUser: ""
   password: ""
+  # Set to true to store password in a Kubernetes Secret (default true). Set to false to store in ConfigMap.
+  useSecret: true
+  # Name of an existing Secret containing PASSWORD to use instead of creating one
+  existingSecret: ""
 
   # Custom ports / path configuration
   customPort: ""       # CUSTOM_PORT (default: 3000)
@@ -270,5 +274,7 @@ obsidian:
     # SELKIES_ENABLE_SHARED: "true"
 
 # Pass arbitrary environment variables or Secret references
+env: []
 extraEnv: {}
 envFrom: []
+extraEnvFrom: []

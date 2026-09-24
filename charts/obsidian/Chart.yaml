@@ -2,5 +2,5 @@ apiVersion: v2
 name: obsidian
 description: A Helm chart for Obsidian desktop via LinuxServer.io (Selkies/KasmVNC/Wayland)
 type: application
-version: 0.2.0
+version: 0.2.1
 appVersion: "1.13.7"

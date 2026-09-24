@@ -43,8 +43,27 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "obsidian.fullname" . }}-env
+          {{- if .Values.obsidian.existingSecret }}
+          - secretRef:
+              name: {{ .Values.obsidian.existingSecret }}
+          {{- else if and .Values.obsidian.password (ne .Values.obsidian.useSecret false) }}
+          - secretRef:
+              name: {{ include "obsidian.fullname" . }}-secret
+          {{- end }}
           {{- with .Values.envFrom }}
           {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- with .Values.extraEnvFrom }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- if or .Values.env (and .Values.extraEnv (kindIs "slice" .Values.extraEnv)) }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- if and .Values.extraEnv (kindIs "slice" .Values.extraEnv) }}
+          {{- toYaml .Values.extraEnv | nindent 10 }}
+          {{- end }}
           {{- end }}
           ports:
             - name: https

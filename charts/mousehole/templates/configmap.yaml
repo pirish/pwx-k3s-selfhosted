@@ -9,6 +9,8 @@ data:
   TZ: {{ .Values.mousehole.timezone }}
   MOUSEHOLE_PORT: {{ .Values.service.port | quote }}
   MOUSEHOLE_STATE_DIR_PATH: {{ .Values.mousehole.stateDirPath }}
-  #MOUSEHOLE_USER_AGENT: 
+  {{- if .Values.mousehole.userAgent }}
+  MOUSEHOLE_USER_AGENT: {{ .Values.mousehole.userAgent | quote }}
+  {{- end }}
   MOUSEHOLE_CHECK_INTERVAL_SECONDS: {{ .Values.mousehole.checkInterval | quote }}
   MOUSEHOLE_STALE_RESPONSE_SECONDS: {{ .Values.mousehole.staleResponse | quote }}

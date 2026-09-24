@@ -43,6 +43,18 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "copyparty.fullname" . }}-env
+          {{- with .Values.extraEnvFrom }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- if or .Values.env .Values.extraEnv }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
           ports:
           - name: http
             containerPort: {{ .Values.service.port }}
@@ -60,24 +72,71 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+            {{- if or (and .Values.persistence .Values.persistence.config .Values.persistence.config.enabled) (and .Values.persistence .Values.persistence.config .Values.persistence.config.existingClaim) }}
             - name: config
               mountPath: /cfg/copyparty
+            {{- end }}
+            {{- if or (and .Values.persistence .Values.persistence.data .Values.persistence.data.enabled) (and .Values.persistence .Values.persistence.data .Values.persistence.data.existingClaim) }}
+            - name: data
+              mountPath: /w
+            {{- end }}
+            {{- if or (and .Values.configMapConfig .Values.configMapConfig.enabled) (and .Values.secretConfig .Values.secretConfig.enabled) (and .Values.config .Values.config.existingConfigMap) (and .Values.config .Values.config.existingSecret) }}
             - name: config-file
-              mountPath: /cfg
+              mountPath: /cfg/copyparty.conf
+              subPath: copyparty.conf
+            {{- end }}
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
       
       volumes:
+        {{- if and .Values.persistence .Values.persistence.config .Values.persistence.config.existingClaim }}
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.config.existingClaim }}
+        {{- else if and .Values.persistence .Values.persistence.config .Values.persistence.config.enabled }}
         - name: config
           persistentVolumeClaim:
             claimName: {{ include "copyparty.fullname" . }}-config-pvc
+        {{- end }}
+        {{- if and .Values.persistence .Values.persistence.data .Values.persistence.data.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.data.existingClaim }}
+        {{- else if and .Values.persistence .Values.persistence.data .Values.persistence.data.enabled }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ include "copyparty.fullname" . }}-data-pvc
+        {{- end }}
+        {{- if and .Values.config .Values.config.existingSecret }}
+        - name: config-file
+          secret:
+            secretName: {{ .Values.config.existingSecret }}
+            items:
+            - key: {{ .Values.config.existingSecretKey | default "copyparty.conf" }}
+              path: copyparty.conf
+        {{- else if and .Values.secretConfig .Values.secretConfig.enabled }}
+        - name: config-file
+          secret:
+            secretName: {{ include "copyparty.fullname" . }}-config-secret
+            items:
+            - key: copyparty.conf
+              path: copyparty.conf
+        {{- else if and .Values.config .Values.config.existingConfigMap }}
+        - name: config-file
+          configMap:
+            name: {{ .Values.config.existingConfigMap }}
+            items:
+            - key: {{ .Values.config.existingConfigMapKey | default "copyparty.conf" }}
+              path: copyparty.conf
+        {{- else if and .Values.configMapConfig .Values.configMapConfig.enabled }}
         - name: config-file
           configMap:
             name: {{ include "copyparty.fullname" . }}-config
             items:
             - key: copyparty.conf
               path: copyparty.conf
+        {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}

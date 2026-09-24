@@ -127,5 +127,27 @@ tolerations: []
 
 affinity: {}
 
+# Tunnel configuration
+tunnel:
+  # The Cloudflare Tunnel token. If specified, a Kubernetes Secret containing TUNNEL_TOKEN will be created.
+  token: ""
+  # Name of an existing Secret containing TUNNEL_TOKEN to use instead of creating one.
+  existingSecret: ""
+  # Set to true to mount a pre-existing secret named {{ fullname }}-env-secret even if token is empty
+  useDefaultSecret: false
+
+# Custom arguments to replace default tunnel run args ("tunnel", "--no-autoupdate", "run")
+args: []
+
+# Additional arguments appended to the container args
+extraArgs: []
+
+# Extra environment variables as a list of name/value pairs or key/values
+env: []
+extraEnv: []
+
+# Extra environment sources (e.g. ConfigMaps or Secrets) to load via envFrom
+extraEnvFrom: []
+
 CFConfig:
   metricsCidr: "127.0.0.1"

@@ -112,19 +112,13 @@ httpRoute:
   #       value: v2
 ingressRoute:
   enabled: false
+  host: chart-example.local
+  scheme: http
   annotations: {}
-    # kubernetes.io/ingress.class: nginx
-    # kubernetes.io/tls-acme: "true"
-  hosts:
-    - host: chart-example.local
-      paths:
-        - path: /
-          pathType: ImplementationSpecific
-  tls: []
-    # enabled: true
-  #  - secretName: chart-example-tls
-  #    hosts:
-  #      - chart-example.local
+  tls:
+    enabled: false
+    secretName: chart-example-tls
+
 resources: {}
   # We usually recommend not to specify default resources and to leave this as a conscious
   # choice for the user. This also increases chances charts run on environments with little
@@ -155,18 +149,26 @@ autoscaling:
   targetCPUUtilizationPercentage: 80
   # targetMemoryUtilizationPercentage: 80
 
+# Persistence configuration for shelfarr data
+persistence:
+  enabled: true
+  storageClass: "local-path"
+  accessMode: ReadWriteOnce
+  size: 500Mi
+  existingClaim: ""
+
+# Extra environment variables as a list of name/value pairs
+env: []
+extraEnv: []
+
+# Extra environment sources (ConfigMaps or Secrets) to load via envFrom
+extraEnvFrom: []
+
 # Additional volumes on the output Deployment definition.
 volumes: []
-  # - name: foo
-  #   secret:
-  #     secretName: mysecret
-  #     optional: false
 
 # Additional volumeMounts on the output Deployment definition.
 volumeMounts: []
-  # - name: foo
-  #   mountPath: "/etc/foo"
-  #   readOnly: true
 
 nodeSelector: {}
 
@@ -182,4 +184,10 @@ shelfarr:
     filenameTemplate: ""
     allowDirectoryMove: false
     baseUrl: ""
+    # ABS API token. By default stored securely in a Kubernetes Secret.
     token: ""
+  secret:
+    # Set to true to store token in a Secret (default true). If false, stored in ConfigMap.
+    useSecret: true
+    # Use an existing Secret containing ABS_TOKEN instead of creating one
+    existingSecret: ""

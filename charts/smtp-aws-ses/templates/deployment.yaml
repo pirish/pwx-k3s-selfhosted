@@ -42,8 +42,22 @@ spec:
           envFrom:
             - configMapRef:
                 name: {{ include "smtp-aws-ses.fullname" . }}-config
+            {{- if or .Values.aws.existingSecret .Values.aws.secretName .Values.aws.relayLogin .Values.aws.relayPassword .Values.aws.secret.create }}
             - secretRef:
-                name: {{ .Values.aws.secretName }}
+                name: {{ .Values.aws.existingSecret | default .Values.aws.secretName | default (printf "%s-secret" (include "smtp-aws-ses.fullname" .)) }}
+            {{- end }}
+            {{- with .Values.extraEnvFrom }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
+          {{- if or .Values.env .Values.extraEnv }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- toYaml . | nindent 12 }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: smtp
               containerPort: {{ .Values.service.port }}

@@ -11,5 +11,5 @@ spec:
     - name: wget
       image: busybox
       command: ['wget']
-      args: ['{{ include "mousehole.fullname" . }}:{{ .Values.service.port }}']
+      args: ['{{ include "mousehole.fullname" . }}-service:{{ .Values.service.port }}']
   restartPolicy: Never

@@ -1,12 +1,35 @@
----
+{{- if and .Values.persistence.config.enabled (not .Values.persistence.config.existingClaim) -}}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: {{ include "sabnzb.fullname" . }}-config-pvc
+  labels:
+    {{- include "sabnzb.labels" . | nindent 4 }}
 spec:
   accessModes:
-    - ReadWriteOnce
-  storageClassName: local-path
+    - {{ .Values.persistence.config.accessMode | default "ReadWriteOnce" }}
+  {{- if .Values.persistence.config.storageClass }}
+  storageClassName: {{ .Values.persistence.config.storageClass | quote }}
+  {{- end }}
   resources:
     requests:
-      storage: 500Mi
+      storage: {{ .Values.persistence.config.size | default "500Mi" }}
+{{- end }}
+{{- if and .Values.persistence.downloads .Values.persistence.downloads.enabled (not .Values.persistence.downloads.existingClaim) }}
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "sabnzb.fullname" . }}-downloads-pvc
+  labels:
+    {{- include "sabnzb.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.persistence.downloads.accessMode | default "ReadWriteOnce" }}
+  {{- if .Values.persistence.downloads.storageClass }}
+  storageClassName: {{ .Values.persistence.downloads.storageClass | quote }}
+  {{- end }}
+  resources:
+    requests:
+      storage: {{ .Values.persistence.downloads.size | default "50Gi" }}
+{{- end }}

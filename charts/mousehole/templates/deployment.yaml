@@ -43,6 +43,25 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "mousehole.fullname" . }}-env
+          {{- if .Values.mousehole.existingSecret }}
+          - secretRef:
+              name: {{ .Values.mousehole.existingSecret }}
+          {{- else if .Values.mousehole.authPassword }}
+          - secretRef:
+              name: {{ include "mousehole.fullname" . }}-secret
+          {{- end }}
+          {{- with .Values.extraEnvFrom }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- if or .Values.env .Values.extraEnv }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -61,17 +80,25 @@ spec:
           {{- end }}
           
           volumeMounts:
+          {{- if or .Values.persistence.enabled .Values.persistence.existingClaim }}
             - name: data
               mountPath: {{ .Values.mousehole.stateDirPath }}
               readOnly: false
+          {{- end }}
           {{- with .Values.volumeMounts }}
               {{- toYaml . | nindent 12 }}
           {{- end }}
       
       volumes:
+      {{- if .Values.persistence.existingClaim }}
+        - name: data
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.existingClaim }}
+      {{- else if .Values.persistence.enabled }}
         - name: data
           persistentVolumeClaim:
             claimName: {{ include "mousehole.fullname" . }}-data-pvc
+      {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}

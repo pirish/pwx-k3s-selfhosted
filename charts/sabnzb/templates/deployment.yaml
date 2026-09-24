@@ -43,6 +43,25 @@ spec:
           envFrom:
           - configMapRef:
               name: {{ include "sabnzb.fullname" . }}-env
+          {{- if .Values.secret.existingSecret }}
+          - secretRef:
+              name: {{ .Values.secret.existingSecret }}
+          {{- else if and .Values.secret.enabled .Values.secret.data }}
+          - secretRef:
+              name: {{ include "sabnzb.fullname" . }}-secret
+          {{- end }}
+          {{- with .Values.extraEnvFrom }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- if or .Values.env .Values.extraEnv }}
+          env:
+          {{- with .Values.env }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- with .Values.extraEnv }}
+          {{- toYaml . | nindent 10 }}
+          {{- end }}
+          {{- end }}
           ports:
             - name: http
               containerPort: {{ .Values.service.port }}
@@ -60,15 +79,36 @@ spec:
             {{- toYaml . | nindent 12 }}
           {{- end }}
           volumeMounts:
+            {{- if or (and .Values.persistence .Values.persistence.config .Values.persistence.config.enabled) (and .Values.persistence .Values.persistence.config .Values.persistence.config.existingClaim) }}
             - name: config
               mountPath: /config
+            {{- end }}
+            {{- if or (and .Values.persistence .Values.persistence.downloads .Values.persistence.downloads.enabled) (and .Values.persistence .Values.persistence.downloads .Values.persistence.downloads.existingClaim) }}
+            - name: downloads
+              mountPath: /downloads
+            {{- end }}
           {{- with .Values.volumeMounts }}
             {{- toYaml . | nindent 12 }}
           {{- end }}
       volumes:
+        {{- if and .Values.persistence .Values.persistence.config .Values.persistence.config.existingClaim }}
+        - name: config
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.config.existingClaim }}
+        {{- else if and .Values.persistence .Values.persistence.config .Values.persistence.config.enabled }}
         - name: config
           persistentVolumeClaim:
             claimName: {{ include "sabnzb.fullname" . }}-config-pvc
+        {{- end }}
+        {{- if and .Values.persistence .Values.persistence.downloads .Values.persistence.downloads.existingClaim }}
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: {{ .Values.persistence.downloads.existingClaim }}
+        {{- else if and .Values.persistence .Values.persistence.downloads .Values.persistence.downloads.enabled }}
+        - name: downloads
+          persistentVolumeClaim:
+            claimName: {{ include "sabnzb.fullname" . }}-downloads-pvc
+        {{- end }}
       {{- with .Values.volumes }}
         {{- toYaml . | nindent 8 }}
       {{- end }}
